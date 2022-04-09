@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!--
+<script>
+var conn = new WebSocket('ws://localhost:8080');
+conn.onopen = function(e) {
+    console.log("Connection established!");
+};
+
+conn.onmessage = function(e) {
+    console.log(e.data);
+};
+console.log("Done");
+</script>
+-->
+</head>
+<body>
+<p>Index html</p>
+
+<!--<script src="http://test/autobahn.js"></script>-->
+<script>AUTOBAHN_DEBUG = true;</script>
+<script src="http://test/AutobahnJS_client/autobahn.js"></script>
+<script>
+						WhenOpen = function() {
+									//conn.subscribe('kittensCategory', function(topic, data) {
+									console.log('Autobahn open connection to server: '+ conn._server +' with session ID: ',conn.sessionid() ); //or conn._session_id
+									}
+								
+						WhenClose = function(info) {
+									console.log('WebSocket connection closed',info);
+								}
+								
+		var connection = new autobahn.Connection({
+                           url: 'ws://127.0.0.1:9090/',
+                           realm: 'realm1',
+						   on_user_error: function (error, customErrorMessage) {
+							   console.log("error on 1");
+							},
+							on_internal_error: function (error, customErrorMessage) {
+							   console.log("error on 2");
+							}
+                        },WhenOpen,WhenClose);   //, {'skipSubprotocolCheck': true}); //This  feature is currently not available in autobahnJS
+		
+		 connection.open();
+
+</script>
+
+<form action="/post-server.php" method="post">
+  <label for="fname">Title:</label>
+  <input type="text" id="fname" name="title"><br><br>
+  <label for="lname">category:</label>
+  <input type="text" id="lname" name="category"><br><br>
+  <label for="lname">Article:</label>
+  <input type="text" id="lname" name="article"><br><br>
+  <input type="submit" value="Submit">
+  
+</form>
+</body>
+</html>
