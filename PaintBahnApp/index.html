@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<base href="http://mywork/">
+	<link rel="shortcut icon" href="#" />  <!-- This prevent to request to favicon.ico --> 
+	<script type = "text/javascript">
+	// This Does not say any things about Exception only for Error
+	window.onerror = function (msg, url, lineNo, columnNo, error) {
+		  var string = msg.toLowerCase();
+		  var substring = "script error";
+		  if (string.indexOf(substring) > -1){			// string.indexOf() method return position of first occurrence of string, if not match then -1 
+			alert('Script Error: See Browser Console for Detail'); // Script error will occur in JS when the script is come from other then Host server 
+		  } else {
+			var message = [
+			  'Message: ' + msg,
+			  'URL: ' + url,
+			  'Line: ' + lineNo,
+			  'Column: ' + columnNo,
+			  'Error object: ' + JSON.stringify(error)
+			].join(' - ');
+
+			alert(message);
+		  }
+
+		  return false;
+		};
+		
+		window.addEventListener('unhandledrejection', function (e) {
+		  log("Error occurred, Unhandled Rejection: " + e.reason.message);
+		})
+
+    </script>
+	<link rel="stylesheet" href="/paintbahn/style/style.css">
+	<script type="text/javascript" src="/paintbahn/script/autobahn.min.js"></script>
+	<script type="text/javascript" src= "/paintbahn/script/jquery.js"  ></script>
+</head>
+<body style="margin:0;">
+
+	<div class="tools-block">
+		 <button id="subButton">Subscribe</button>	  
+		 <button id="clrButton">Clear</button>
+		 <button id="saveButton">Save</button>
+		 <button id="eraserButton">Eraser</button>
+        <div class="colors">
+			<button type="button" value="#f00"></button>
+			<button type="button" value="#0f0"></button>
+			<button type="button" value="#00f"></button>
+		</div>
+		Pen: <input class="pick" type="color" value="#000000">
+		Pent: <input class="fill" type="color" value="#ff0000">
+        <div class="brushes">
+			<button type="button" value="3"></button>
+			<button type="button" value="4"></button>
+			<button type="button" value="5"></button>
+		</div>
+		<div class="shape">
+			<button type="button" value="line">Line</button>
+			<button type="button" value="rectangle">Ract</button>
+			<button type="button" value="circle">Circle</button>
+		</div>
+	</div>	
+	
+	<div class="canvas-block">
+		<canvas id="IDcanvas" width="640" height="550" style="">
+			 If Browser does not support canvas then this message will show on the screen.
+		</canvas>	
+	</div>	
+
+	
+<div class="coodinate" style="font-size:16pt; padding-left: 10px; float: left; margin-right: 20px">X: 0, Y: 0</div><br>		
+ <p id="result">Sunny  </p>
+<br>
+Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
+
+
+
+	<script>
+	 $("p").click(function () {
+	  $("p").text( "Session ID:  "+sess.id);
+	});
+		// Array those function you want to call after app library load
+		var syncer = syncer || []; // reuse it if it was defined before
+		syncer.push(["connect",["arguments",1,2,3]]);
+		syncer.push(["listenWAMP",["arguments",1,2,3]]);
+	</script> 
+<script type="text/javascript" src="/paintbahn/script/paintbahn.js"></script>	
+<script type="text/javascript" src="/paintbahn/script/drawing.js"></script>
+
+</body>
+</html>
