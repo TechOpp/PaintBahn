@@ -1,9 +1,11 @@
 https://wamp-proto.org/implementations.html		// supported by all languages
 
-Run WAMP server Thruway as:  		php vendor/voryx/thruway/Examples/SimpleWsRouter.php	 From root dir
+Run WAMP server Thruway as:  		php vendor/voryx/thruway/Examples/SimpleWsRouter.php	 From root dir. Change IP as current available in this file: vendor\voryx\thruway\Examples\SimpleWsRouter.php
 
-Run WAMP client Autobahn in php as: 		php client\Client.php 				 From root dir
-AutobahnJS is JS client run in browser, run it on web server
+1. PaintBahnApp is HTNL5 canvas base dwring client app, so run it on a httpd server
+ 
+2. Run php WAMP Autobahn Client as: 		php client\Client.php 				 From root dir
+3. AutobahnJS is JS client run in browser, run it on web server
 Now both client are ready to communicate with each others.
 like run this line in script shell
 
@@ -40,3 +42,6 @@ First Register a callee to Deilar as
 
 Now Call to Callee as
 session.call('com.myapp.date');
+
+
+NOTE: Thruway is based on Ratchet PHP framework, which is non-blocking event-loop server
